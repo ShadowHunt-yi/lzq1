@@ -1,0 +1,198 @@
+<html>
+ <head>
+	 <title>表单</title>
+	 <style>
+	 label.xrequired:before{
+		 content:"*";
+		 color:red;
+	 }
+	.Checkbox {
+	    position: absolute;
+	    visibility: hidden;
+	}
+	.Checkbox+label {
+	    position:absolute;
+	    width: 16px;
+	    height: 16px;
+	    border: 1px solid #A6A6A6;
+	    border-radius: 50%;
+	    background-color:#DEDEDE;
+	} 
+	.Checkbox:checked+label::before {
+	    content: "";
+	    position: absolute;
+	    left: 2px;
+	    top:2px;
+	    width: 9px;
+	    height: 4px;
+	    border: 2px solid #424242;
+	    border-top-color: transparent;
+	    border-right-color: transparent; 
+	    transform: rotate(-45deg);
+	    -ms-transform: rotate(-60deg);
+	    -moz-transform: rotate(-60deg);
+	    -webkit-transform: rotate(-60deg);
+	 </style>
+	 <script>
+	 String.prototype.trim = function()
+	 {
+	     return this.replace(/(^\s*)|(\s*$)/g, "");
+	 }
+	 
+	 
+	 function validator(){ 
+	     if(isDate(document.all.demo1.value.trim())==false){
+	      document.all.demo1.select();
+	      return false;
+	     }
+	    
+	 }
+	 function isDate(dateString){
+	   if(dateString.trim()=="")return true;
+	 
+	   var r=dateString.match(/^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2})$/);
+	         if(r==null){
+	    alert("请输入格式正确的日期\n\r日期格式：yyyy-mm-dd\n\r例    如：2008-08-08\n\r");
+	    return false;
+	   }
+	         var d=new Date(r[1],r[3]-1,r[4]);   
+	   var num = (d.getFullYear()==r[1]&&(d.getMonth()+1)==r[3]&&d.getDate()==r[4]);
+	   if(num==0){
+	    alert("请输入格式正确的日期\n\r日期格式：yyyy-mm-dd\n\r例    如：2008-08-08\n\r");
+	   }
+	   return (num!=0);
+	   
+	 } 
+	 </script>
+	 <script>
+	 			function check2pwd() {
+	 					if(input1.value != input2.value) {
+	 						alert("两次输入密码不一致！")
+	 						input1.value = "";
+	 						input2.value = "";
+	 					}
+	 			}
+	 		</script>
+	
+ </head>
+<body>
+<center>
+	<form>
+	    <p><label class="xrequired">请填写您的姓名：&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+	     <input type="text" name="name" required="required"></p>
+	    <p><label class="xrequired">请输入您的密码：&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+	    <input type="password" id="input1" required="required"></p>
+	    <p><label class="xrequired">请再次输入密码：&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+	    <input type="password" id="input2" required="required"
+	     onblur="check2pwd()"></p>
+		<p>请选择性别：&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input  type="radio" name="sex">男<input type="radio" name="sex">女</p>
+		<p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		请输入年龄：&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" name="age" ></p>
+		
+		
+		<p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		请输入生日：&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" name="demo1" >
+		<font color="red">格式：“yyyy-mm-dd”</font></p>
+		<span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		请选择你的爱好：
+		<input type="checkbox" name="hobby" value="music" class="Checkbox" id="check1" >
+		&nbsp&nbsp&nbsp&nbsp&nbsp<label for="check1"></label>
+		<input type="checkbox" name="hobby" value="music" class="Checkbox" id="check2" >
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp音乐影视
+		<label for="check2"></label>
+		<input type="checkbox" name="hobby" value="trip" class="Checkbox" id="check3">
+		&nbsp&nbsp&nbsp&nbsp&nbsp外出旅游
+		<label for="check3"></label>
+		<input type="checkbox" name="hobby" value="activity" class="Checkbox" id="check4">
+		&nbsp&nbsp&nbsp&nbsp&nbsp社交活动
+         
+		</span>
+		<p><label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		请选择所在省市&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+		
+		<select required="required" id="province" name="province" onchange="changeProvince(this.selectedIndex)"></select>
+		<select id="city" name="city"></select>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+	</select></p>	
+	<p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp自我描述:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+	<textarea rows="10" cols="30" style="vertical-align:top" placeholder="填写其他任务...."></textarea>&nbsp&nbsp&nbsp</p>
+     
+	 <input type="submit" onclick="validator()">
+	 </center>
+	 </form>
+</body>
+</html>
+<script type="text/javascript">
+ var provinces=["请选择省份","北京市","天津市","上海市","重庆市","江苏省","浙江省","江西省","海南省","河北省",'河南省','云南省','辽宁省','黑龙江省','湖南省','安徽省','山东省',
+ '新疆维吾尔自治区','湖北省','广西壮族','甘肃省','山西省','内蒙古自治区','陕西省','吉林省','福建省','贵州省','广东省','青海省','西藏','四川省','宁夏回族','海南省','台湾省','香港特别行政区',
+ '澳门特别行政区'
+ ];
+
+ var citys=[
+ ["请选择城市"],
+ ["北京市"],
+ ["天津市"],
+ ["上海市"],
+ ["重庆市"],
+ ['南京市', '无锡市', '徐州市', '常州市', '苏州市', '南通市', '连云港市', '淮安市', '盐城市', '扬州市', '镇江市', '泰州市', '宿迁市' ],
+ ['杭州市', '宁波市', '温州市', '嘉兴市', '湖州市', '绍兴市', '金华市', '衢州市', '舟山市', '台州市', '丽水市'],
+ ['南昌市','景德镇市','萍乡市','九江市','新余市','鹰潭市','赣州市','吉安市','宜春市','抚州市','上饶市'],
+ ["海口市","三亚市","三沙市","儋州市"],
+ ["石家庄市","张家口市","承德市","秦皇岛市","唐山市","廊坊市","保定市","衡水市","沧州市","邢台市","邯郸市"],
+ ['郑州市','开封市','洛阳市', '平顶山市', '安阳市', '鹤壁市', '新乡市', '焦作市', '济源市', '濮阳市', '许昌市', '漯河市', '三门峡市', '南阳市', '商丘市', '信阳市', '周口市', '驻马店市'],
+ ['昆明市',' 曲靖市','玉溪市','保山市','昭通市','丽江市','思茅市','临沧市','楚雄彝族自治州','红河哈尼族彝族自治州','文山壮族苗族自治州','西双版纳傣族自治州','大理白族自治州','德宏傣族景颇族自治州','怒江傈僳族自治州','迪庆藏族自治州'],
+ ['沈阳市' ,'大连市' ,'鞍山市' ,'抚顺市' ,'本溪市' ,'丹东市' ,'锦州市' ,'营口市' ,'阜新市' ,'辽阳市' ,'盘锦市' ,'铁岭市' ,'朝阳市' ,'葫芦岛市'],
+ ['哈尔滨市','齐齐哈尔市','鸡西市','鹤岗市','双鸭山市', '大庆市', '伊春市', '佳木斯市', '七台河市', '牡丹江市', '黑河市', '绥化市', '大兴安岭地区'],
+ ['长沙市', '株洲市','湘潭市', '衡阳市', '邵阳市', '岳阳市', '常德市', '张家界市', '益阳市', '郴州市', '永州市', '怀化市', '娄底市', '湘西土家族苗族自治州'],
+ ['合肥市', '芜湖市', '蚌埠市', '淮南市', '马鞍山市', '淮北市', '铜陵市', '安庆市', '黄山市', '滁州市','阜阳市','宿州市', '巢湖市', '六安市', '亳州市', '池州', '宣城市'],
+ ['济南市','青岛市','淄博市','枣庄市','东营市','烟台市','潍坊市','济宁市','泰安市','威海市','日照市','莱芜市','临沂市','德州市','聊城市','滨州市','菏泽市'],
+ ['乌鲁木齐市', '克拉玛依市', '吐鲁番地区', '哈密地区', '昌吉回族自治州 ', '博尔塔拉蒙古自治州 ', '巴音郭楞蒙古自治州 ', '阿克苏地区', '克孜勒苏柯尔克孜自治州 ', '喀什地区', '和田地区', '伊犁哈萨克自治州', '塔城地区', '阿勒泰地区', '石河子市', '阿拉尔市', '图木舒克市', '五家渠市'],
+ ['武汉市','黄石市','十堰市', '宜昌市', '襄樊市', '鄂州市', '荆门市', '孝感市', '荆州市', '黄冈市', '咸宁市', '随州市', '恩施土家族苗族自治州','仙桃市', '潜江市', '天门市', '神农架林区'],
+ ['南宁市','柳州市','桂林市','梧州市','北海市','防城港市','钦州市','贵港市','玉林市','百色市','贺州市','河池市','来宾市','崇左市'],
+ ['兰州市','嘉峪关市', '金昌市', '白银市', '天水市', '武威市', '张掖市', '平凉市', '酒泉市', '庆阳市', '定西市', '陇南市', '临夏回族自治州', '甘南藏族自治州'],
+ ['太原市','大同市', '阳泉市', '长治市', '晋城市', '朔州市', '晋中市', '运城市', '忻州市', '临汾市', '吕梁市' ],
+ ['呼和浩特市', '包头市', '乌海市', '赤峰市', '通辽市', '鄂尔多斯市', '呼伦贝尔市', '巴彦淖尔市', '乌兰察布市', '兴安盟', '锡林郭勒盟', '阿拉善盟'],
+ ['西安市','铜川市','宝鸡市', '咸阳市', '渭南市', '延安市', '汉中市', '榆林市', '安康市', '商洛市'],
+ ['长春市', '吉林市', '四平市', '辽源市', '通化市', '白山市', '松原市', '白城市', '延边朝鲜族自治州'],
+ ['福州市', '厦门市', '莆田市', '三明市', '泉州市', '漳州市', '南平市', '龙岩市', '宁德市'],
+ ['贵阳市','六盘水市', '遵义市', '安顺市', '铜仁地区', '黔西南布依族苗族自治州', '毕节地区', '黔东南苗族侗族自治州', '黔南布依族苗族自治州'],
+ ['广州市','韶关市','深圳市','珠海市','汕头市','佛山市','江门市','湛江市','茂名市','肇庆市','惠州市','梅州市','汕尾市','河源市','阳江市','清远市','东莞市','中山市','潮州市','揭阳市','云浮市'],
+ ['西宁市' ,'海东地区', '海北藏族自治州', '黄南藏族自治州', '海南藏族自治州', '果洛藏,族自治州', '玉树藏族自治州', '海西蒙古族藏族自治州'] ,
+ ['拉萨市','昌都地区', '山南地区', '日喀则地市', '那曲地区', '阿里地区', '林芝地区'],
+ ['成都市','自贡市', '攀枝花市', '泸州市', '德阳市', '绵阳市', '广元市', '遂宁市', '内江市', '乐山市', '南充市', '眉山市', '宜宾市', '广安市', '达州市', '雅安市', '巴中市', '资阳市', '阿坝藏族羌族自治州', '甘孜藏族自治州', '凉山彝族自治州'],
+ ['银川市','石嘴山市','吴忠市','固原市','中卫市'],
+ ['海口市','三亚市','五指山市', '琼海市', '儋州市', '文昌市', '万宁市', '东方市', '定安县', '屯昌县', '澄迈县', '临高县', '白沙黎族自治县', '昌江黎族自治县', '乐东黎族自治县', '陵水黎族自治县', '保亭黎族苗族自治县', '琼中黎族苗族自治县'],
+ ['台北市', '高雄市', '基隆市', '台中市', '台南市', '新竹市', '嘉义市'],
+ ['中西区', '湾仔区', '东区', '南区', '油尖旺区', '深水埗区', '九龙城区', '黄大仙区', '观塘区', '荃湾区', '葵青区', '沙田区', '西贡区', '大埔区', '北区', '元朗区', '屯门区', '离岛区']
+ ['澳门']
+ ];
+ window.onload=function(){
+ var province=document.getElementById("province");
+ var city=document.getElementById("city");
+ var index=0;
+ 
+ for(var i in provinces)
+ {
+ var option = document.createElement("option");
+ option.text=provinces[i];
+ option.value=provinces[i];
+ province.appendChild(option);
+ }
+ var option = document.createElement("option");
+ option.text=citys[index];
+ option.value=citys[index];
+ city.appendChild(option);
+ }
+ function changeProvince(selectedIndex){
+ var city=document.getElementById("city");
+ city.options.length=0;
+ for(var i in citys[selectedIndex])
+ {
+ var option = document.createElement("option");
+ option.text=citys[selectedIndex][i];
+ option.value=citys[selectedIndex][i];
+ city.appendChild(option);
+ }
+ }
+</script>
